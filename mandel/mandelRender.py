@@ -429,11 +429,11 @@ class mandelRender():
 		q=x[1]
 		c1=(p+self.axx/self.ayy*self.frin-self.xcent)*(self.axx/2.*self.ayy/self.axx/self.frin)
 		c2=(q+self.frin-self.ycent)*(self.ayy/2./self.frin)
-		axye=self._cycle(p,q)
-		if (axye[1]>=100.):
+		axey=self._cycle(p,q)
+		if (axey[1]>=100.):
 			'''while (dim[n]<itr):
 				n=n+1'''
-			it=(axye[0]+8.5*exp(-sqrt(axye[1]))+8.5*exp(-(axye[1]**0.09)))/self.nitr
+			it=(axey[0]+8.5*exp(-sqrt(axey[1]))+8.5*exp(-(axey[1]**0.09)))/self.nitr
 			if self.gamma=="sunset":
 				self.draw.rectangle(((c1,c2),(c1+10,c2+10)), fill=(int((7*self._gaussian(it,0.76,0.035)+24*self._gaussian(it,0.3,0.09)+2*self._gaussian(it,0.915,0.015))*255./40.),int((12*self._gaussian(it,0.3,0.12)+5*self._gaussian(it,0.77,0.05)+2*self._gaussian(it,0.92,0.02))*255./40.),int((2*self._gaussian(it,0.93,0.02)+12*self._gaussian(it,0.4,0.12)+5*self._gaussian(it,0.8,0.05)+self._gaussian(it,1,0.01))*255./40.)))
 			if self.gamma=="acid":
@@ -449,7 +449,7 @@ class mandelRender():
 				#self.draw.rectangle(((c1,c2),(c1+10,c2+10)), fill=(int(it*255*(1+10*exp(-it))),int(it*255*(1+10*exp(-it))),int(it*255*(1+10*exp(-it)))))
 			#bw rec: 
 				self.draw.rectangle(((c1,c2),(c1+10,c2+10)), fill=(int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.)))
-		if (axye[0]>self.nitr-2):
+		if (axey[0]>self.nitr-2):
 			self.draw.rectangle(((c1,c2),(c1+10,c2+10)), fill=(0, 0, 0))
 		if (int(c1/(self.axx-1)*100)%5==0) and int(c1/(self.axx-1)*100)!=self.percent:
 			self.percent = int(c1/(self.axx-1)*100)
