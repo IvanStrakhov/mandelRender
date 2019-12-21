@@ -21,6 +21,8 @@ class gaussianTestCase(unittest.TestCase):
         assert_allclose(math.exp(-0.5*((x-mu)/sigma)*((x-mu)/sigma)) / sigma / math.sqrt(2*math.pi), mande.gaussian(x,mu,sigma), rtol=1e-5)
 
 
-def load_tests(loader, tests, ignore):
-    tests.addTests(doctest.DocTestSuite(mandel.mandelRender))
-    return tests
+#def load_tests(loader, tests, ignore):
+    #tests.addTests(doctest.DocTestSuite(mandel.mandelRender))
+    #return tests
+if __name__ == '__main__':
+    unittest.main()
