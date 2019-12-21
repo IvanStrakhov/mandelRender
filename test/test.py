@@ -22,5 +22,5 @@ class gaussianTestCase(unittest.TestCase):
 
 
 def load_tests(loader, tests, ignore):
-    tests.addTests(doctest.DocTestSuite(ser.snake))
+    tests.addTests(doctest.DocTestSuite(mandel.mandelRender))
     return tests
