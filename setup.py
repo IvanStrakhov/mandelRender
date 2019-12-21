@@ -21,7 +21,7 @@ setup(
     scripts=['bin/mandelbrot'],
     
     test_suite='test',
-    install_requires=['numpy>=1.12.0', 'matplotlib>=2.0','Pillow>=2.0.0','numba>=0.45.0','console_progressbar>=1.1.0'],
+    install_requires=['numpy>=1.12.0', 'matplotlib>=2.0,<3.0','Pillow>=2.0.0','numba>=0.45.0','console_progressbar>=1.1.0'],
     classifiers=[
         'Intended Audience :: Science/Research',
         'Intended Audience :: Education',
