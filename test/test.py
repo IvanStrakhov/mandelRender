@@ -18,7 +18,7 @@ class gaussianTestCase(unittest.TestCase):
         x = math.radians(60.0001)
         mu=1
         sigma=2
-        assert_allclose(math.exp(-0.5*((x-mu)/sigma)*((x-mu)/sigma)) / sigma / math.sqrt(2*math.pi), mande.gaussian(x,mu,sigma), rtol=1e-5)
+        assert_allclose(math.exp(-0.5*((x-mu)/sigma)*((x-mu)/sigma)) / sigma / math.sqrt(2*math.pi), mandel.gaussian(x,mu,sigma), rtol=1e-5)
 
 
 #def load_tests(loader, tests, ignore):
