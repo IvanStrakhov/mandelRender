@@ -18,7 +18,7 @@ setup(
     packages=find_packages(),
     # If all your code are in a module, use py_modules instead of packages:
     # py_modules=['ser'],
-    scripts=['bin/mandelRender'],
+    scripts=['bin/mandelbrot'],
     
     test_suite='test',
     install_requires=['numpy>=1.13', 'matplotlib>=2.0,<3.0','Pillow>=2.0.0','numba>=0.45.0','console_progressbar>=1.1.0'],
