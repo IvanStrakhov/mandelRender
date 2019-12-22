@@ -5,6 +5,8 @@ import mandel
 
 def main():
     print('mandel version is {}'.format(mandel.version))
+    man = mandel.mandelRender()
+    man.render()
 
 
 if __name__ == '__main__':
