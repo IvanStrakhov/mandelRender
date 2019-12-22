@@ -125,6 +125,12 @@ class mandelRender():
 		Returns:
 		-------
 		None
+		
+		Advices:
+		(xcent=-1.4801308697,ycent=-0.001092450)
+		(xcent=0.13000002968,ycent=-0.59050002976)
+		(xcent=-1.47983996, ycent=-0.0006001)
+		(xcent=-1.45986996, ycent=-0.0)
 	    
 		"""
 		self.xcent=xcent
