@@ -310,13 +310,31 @@ class mandelRender():
 		self.frameNo=0
 		frames = self.numOfFrames
         
-		self.numOfFrames=1
+		self.numOfFrames=3
 		print("Image size: ",self.axx,self.ayy)
 		print("Scale: ",self.frin)
 		print("Center: ",self.getCenter())
 		print("Gamma: ", self.getGamma())
 		print("Name: ",self.name+'.png')
-		list(map(self._drawcycle,list(product(self.p_lin, self.q_lin))))
+		
+		
+		list(map(self._drawcycle,list(product(self.p_lin[:int(1/3*len(self.p_lin))], self.q_lin[:int(1/3*len(self.p_lin))]))))
+		list(map(self._drawcycle,list(product(self.p_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))], self.q_lin[:int(1/3*len(self.p_lin))]))))
+		list(map(self._drawcycle,list(product(self.p_lin[int(2/3*len(self.p_lin)):], self.q_lin[:int(1/3*len(self.p_lin))]))))
+		self.frameNo=1
+		
+		list(map(self._drawcycle,list(product(self.p_lin[:int(1/3*len(self.p_lin))], self.q_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))]))))
+		list(map(self._drawcycle,list(product(self.p_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))], self.q_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))]))))
+		list(map(self._drawcycle,list(product(self.p_lin[int(2/3*len(self.p_lin)):], self.q_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))]))))
+		self.frameNo=2
+		list(map(self._drawcycle,list(product(self.p_lin[:int(1/3*len(self.p_lin))], self.q_lin[int(2/3*len(self.p_lin)):]))))		
+		
+		list(map(self._drawcycle,list(product(self.p_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))], self.q_lin[int(2/3*len(self.p_lin)):]))))		
+		
+		list(map(self._drawcycle,list(product(self.p_lin[int(2/3*len(self.p_lin)):], self.q_lin[int(2/3*len(self.p_lin)):]))))
+		
+		
+		#list(map(self._drawcycle,list(product(self.p_lin, self.q_lin))))
         
 		self.numOfFrames=frames
 		print("Time: ",timer()-start)
@@ -438,7 +456,7 @@ class mandelRender():
 		c1=(p+self.axx/self.ayy*self.frin-self.xcent)*(self.axx/2.*self.ayy/self.axx/self.frin)
 		c2=(q+self.frin-self.ycent)*(self.ayy/2./self.frin)
 		axey=self._cycle(p,q)
-		if (axey[1]>=100.):
+		if (axey[1]>=10.):
 			'''while (dim[n]<itr):
 				n=n+1'''
 			it=(axey[0]+8.5*exp(-sqrt(axey[1]))+8.5*exp(-((axey[1])**0.09)))/self.nitr
@@ -489,7 +507,7 @@ def cycle(p,q, nitr):
 		yn=2*xn0*yn0+q
 		xn0=xn
 		yn0=yn
-		if (xn0*xn0+yn0*yn0>=100.):
+		if (xn0*xn0+yn0*yn0>=10.):
 			return (itr, xn0*xn0+yn0*yn0)
 			break
 		itr=itr+1
