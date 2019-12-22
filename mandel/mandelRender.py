@@ -49,6 +49,8 @@ class mandelRender():
 	def __init__(self):
 		self.xcent=-1.4801308697
 		self.ycent=-0.001092450
+		
+		
 		#xcent=0.13000002968
 		#ycent=-0.59050002976
 		#xcent=-1.47983996
@@ -278,7 +280,7 @@ class mandelRender():
 		None
 	    
 		"""
-		if string=="sunset" or string=="acid" or string=="azure" or string=="bloody grass" or string=="bw":
+		if string=="sunset" or string=="acid" or string=="azure" or string=="bloody grass" or string=="bw" or string=="exper":
 			self.gamma=string
 		else:
 			print("wrong gamma")
@@ -332,7 +334,7 @@ class mandelRender():
 				ix, iy = event.xdata, event.ydata
 				print("previous center: ",self.getCenter())
 			
-				self.setCenter(self.p_lin[int(ix)], self.q_lin[int(iy)])
+				self.setCenter(self.p_lin[int(ix)], self.q_lin[-int(iy)])
 				print("current center: ",self.getCenter())
 				
 				self.percent=0
@@ -439,24 +441,28 @@ class mandelRender():
 		if (axey[1]>=100.):
 			'''while (dim[n]<itr):
 				n=n+1'''
-			it=(axey[0]+8.5*exp(-sqrt(axey[1]))+8.5*exp(-(axey[1]**0.09)))/self.nitr
+			it=(axey[0]+8.5*exp(-sqrt(axey[1]))+8.5*exp(-((axey[1])**0.09)))/self.nitr
+			#it = 0.01*(axey[0] - np.log2(np.log2(axey[1])))
+			if self.gamma=="exper":
+				color = (1.0 - 0.01*(axey[0] - np.log2(np.log2(axey[1]))))
+				self.draw.rectangle(((c1,self.ayy-c2),(c1+10,self.ayy-c2-10)), fill=(int(color*255),int(color*255),int(color*255)))
 			if self.gamma=="sunset":
-				self.draw.rectangle(((c1,c2),(c1+10,c2+10)), fill=(int((7*self._gaussian(it,0.76,0.035)+24*self._gaussian(it,0.3,0.09)+2*self._gaussian(it,0.915,0.015))*255./40.),int((12*self._gaussian(it,0.3,0.12)+5*self._gaussian(it,0.77,0.05)+2*self._gaussian(it,0.92,0.02))*255./40.),int((2*self._gaussian(it,0.93,0.02)+12*self._gaussian(it,0.4,0.12)+5*self._gaussian(it,0.8,0.05)+self._gaussian(it,1,0.01))*255./40.)))
+				self.draw.rectangle(((c1,self.ayy-c2),(c1+10,self.ayy-c2-10)), fill=(int((7*self._gaussian(it,0.76,0.035)+24*self._gaussian(it,0.3,0.09)+2*self._gaussian(it,0.915,0.015))*255./40.),int((12*self._gaussian(it,0.3,0.12)+5*self._gaussian(it,0.77,0.05)+2*self._gaussian(it,0.92,0.02))*255./40.),int((2*self._gaussian(it,0.93,0.02)+12*self._gaussian(it,0.4,0.12)+5*self._gaussian(it,0.8,0.05)+self._gaussian(it,1,0.01))*255./40.)))
 			if self.gamma=="acid":
 				#self.draw.rectangle(((c1,c2),(c1+10,c2+10)), fill=(int((gaussian(it,0.8,0.05)+24*gaussian(it,0.3,0.09))*255./40.),int((12*gaussian(it,0.3,0.12))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.)))
-				self.draw.rectangle(((c1,c2),(c1+10,c2+10)), fill=(int((7*gaussian(it,0.5,0.12)+2*gaussian(it,0.8,0.05))*255./40.),int((12*gaussian(it,0.3,0.12))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.)))
+				self.draw.rectangle(((c1,self.ayy-c2),(c1+10,self.ayy-c2-10)), fill=(int((7*gaussian(it,0.5,0.12)+2*gaussian(it,0.8,0.05))*255./40.),int((12*gaussian(it,0.3,0.12))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.)))
 			if self.gamma=="azure":
-				self.draw.rectangle(((c1,c2),(c1+10,c2+10)), fill=(int((2*gaussian(it,0.8,0.05))*255./40.),int((12*gaussian(it,0.3,0.12))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.)))
+				self.draw.rectangle(((c1,self.ayy-c2),(c1+10,self.ayy-c2-10)), fill=(int((2*gaussian(it,0.8,0.05))*255./40.),int((12*gaussian(it,0.3,0.12))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.)))
 			if self.gamma=="bloody grass":
 				#green red: 
-				self.draw.rectangle(((c1,c2),(c1+10,c2+10)), fill=(int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.),int((12*gaussian(it,0.3,0.12))*255./40.),int((2*gaussian(it,0.7,0.05))*255./40.)))
+				self.draw.rectangle(((c1,self.ayy-c2),(c1+10,self.ayy-c2-10)), fill=(int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.),int((12*gaussian(it,0.3,0.12))*255./40.),int((2*gaussian(it,0.7,0.05))*255./40.)))
 			if self.gamma=="bw":
 				#bw: 
 				#self.draw.rectangle(((c1,c2),(c1+10,c2+10)), fill=(int(it*255*(1+10*exp(-it))),int(it*255*(1+10*exp(-it))),int(it*255*(1+10*exp(-it)))))
 			#bw rec: 
-				self.draw.rectangle(((c1,c2),(c1+10,c2+10)), fill=(int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.)))
+				self.draw.rectangle(((c1,self.ayy-c2),(c1+10,self.ayy-c2-10)), fill=(int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.)))
 		if (axey[0]>self.nitr-2):
-			self.draw.rectangle(((c1,c2),(c1+10,c2+10)), fill=(0, 0, 0))
+			self.draw.rectangle(((c1,self.ayy-c2),(c1+10,self.ayy-c2-10)), fill=(0, 0, 0))
 		if (int(c1/(self.axx-1)*100)%5==0) and int(c1/(self.axx-1)*100)!=self.percent:
 			self.percent = int(c1/(self.axx-1)*100)
 			
@@ -465,8 +471,6 @@ class mandelRender():
 			self.pb.print_progress_bar(self.percent)
 			
 
-		
-		
 		
 	
 @jit
