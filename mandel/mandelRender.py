@@ -317,21 +317,73 @@ class mandelRender():
 		print("Gamma: ", self.getGamma())
 		print("Name: ",self.name+'.png')
 		
+		self.pb = ProgressBar(total=100,prefix='Frames: 1/1', suffix='', decimals=3, length=50, fill='X', zfill='-')
 		
-		list(map(self._drawcycle,list(product(self.p_lin[:int(1/3*len(self.p_lin))], self.q_lin[:int(1/3*len(self.p_lin))]))))
-		list(map(self._drawcycle,list(product(self.p_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))], self.q_lin[:int(1/3*len(self.p_lin))]))))
-		list(map(self._drawcycle,list(product(self.p_lin[int(2/3*len(self.p_lin)):], self.q_lin[:int(1/3*len(self.p_lin))]))))
-		self.frameNo=1
+		result = list(map(lambda x: drawcycle(x,self.nitr,self.axx,self.ayy,self.frin,self.xcent,self.ycent,self.gamma),list(product(self.p_lin[:int(1/3*len(self.p_lin))], self.q_lin[:int(1/3*len(self.p_lin))]))))
+		for i in result:
+			self.draw.rectangle(((i[0],i[1]),(i[0]+10,i[1]-10)),fill = (i[2],i[3],i[4]))
+		self.percent = 11
 		
-		list(map(self._drawcycle,list(product(self.p_lin[:int(1/3*len(self.p_lin))], self.q_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))]))))
-		list(map(self._drawcycle,list(product(self.p_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))], self.q_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))]))))
-		list(map(self._drawcycle,list(product(self.p_lin[int(2/3*len(self.p_lin)):], self.q_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))]))))
-		self.frameNo=2
-		list(map(self._drawcycle,list(product(self.p_lin[:int(1/3*len(self.p_lin))], self.q_lin[int(2/3*len(self.p_lin)):]))))		
+		self.pb.print_progress_bar(self.percent)
+		result = list(map(lambda x: drawcycle(x,self.nitr,self.axx,self.ayy,self.frin,self.xcent,self.ycent,self.gamma),list(product(self.p_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))], self.q_lin[:int(1/3*len(self.p_lin))]))))
+		for i in result:
+			self.draw.rectangle(((i[0],i[1]),(i[0]+10,i[1]-10)),fill = (i[2],i[3],i[4]))
+		self.percent = 22
 		
-		list(map(self._drawcycle,list(product(self.p_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))], self.q_lin[int(2/3*len(self.p_lin)):]))))		
+		self.pb.print_progress_bar(self.percent)
+		result = list(map(lambda x: drawcycle(x,self.nitr,self.axx,self.ayy,self.frin,self.xcent,self.ycent,self.gamma),list(product(self.p_lin[int(2/3*len(self.p_lin)):], self.q_lin[:int(1/3*len(self.p_lin))]))))
+		for i in result:
+			self.draw.rectangle(((i[0],i[1]),(i[0]+10,i[1]-10)),fill = (i[2],i[3],i[4]))
+		self.percent = 33
 		
-		list(map(self._drawcycle,list(product(self.p_lin[int(2/3*len(self.p_lin)):], self.q_lin[int(2/3*len(self.p_lin)):]))))
+		self.pb.print_progress_bar(self.percent)
+		
+		
+		result = list(map(lambda x: drawcycle(x,self.nitr,self.axx,self.ayy,self.frin,self.xcent,self.ycent,self.gamma),list(product(self.p_lin[:int(1/3*len(self.p_lin))], self.q_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))]))))
+		for i in result:
+			self.draw.rectangle(((i[0],i[1]),(i[0]+10,i[1]-10)),fill = (i[2],i[3],i[4]))
+		self.percent = 44
+		
+		self.pb.print_progress_bar(self.percent)
+		
+		result = list(map(lambda x: drawcycle(x,self.nitr,self.axx,self.ayy,self.frin,self.xcent,self.ycent,self.gamma),list(product(self.p_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))], self.q_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))]))))
+		for i in result:
+			self.draw.rectangle(((i[0],i[1]),(i[0]+10,i[1]-10)),fill = (i[2],i[3],i[4]))
+		self.percent = 55
+		
+		self.pb.print_progress_bar(self.percent)
+		
+		result = list(map(lambda x: drawcycle(x,self.nitr,self.axx,self.ayy,self.frin,self.xcent,self.ycent,self.gamma),list(product(self.p_lin[int(2/3*len(self.p_lin)):], self.q_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))]))))
+		for i in result:
+			self.draw.rectangle(((i[0],i[1]),(i[0]+10,i[1]-10)),fill = (i[2],i[3],i[4]))
+		
+		self.percent = 66
+		
+		self.pb.print_progress_bar(self.percent)
+		
+		result = list(map(lambda x: drawcycle(x,self.nitr,self.axx,self.ayy,self.frin,self.xcent,self.ycent,self.gamma),list(product(self.p_lin[:int(1/3*len(self.p_lin))], self.q_lin[int(2/3*len(self.p_lin)):]))))		
+		for i in result:
+			self.draw.rectangle(((i[0],i[1]),(i[0]+10,i[1]-10)),fill = (i[2],i[3],i[4]))
+		self.percent = 77
+		
+		self.pb.print_progress_bar(self.percent)
+		
+		
+		result = list(map(lambda x: drawcycle(x,self.nitr,self.axx,self.ayy,self.frin,self.xcent,self.ycent,self.gamma),list(product(self.p_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))], self.q_lin[int(2/3*len(self.p_lin)):]))))		
+		for i in result:
+			self.draw.rectangle(((i[0],i[1]),(i[0]+10,i[1]-10)),fill = (i[2],i[3],i[4]))
+		self.percent = 88
+		
+		self.pb.print_progress_bar(self.percent)
+		
+		
+		result = list(map(lambda x: drawcycle(x,self.nitr,self.axx,self.ayy,self.frin,self.xcent,self.ycent,self.gamma),list(product(self.p_lin[int(2/3*len(self.p_lin)):], self.q_lin[int(2/3*len(self.p_lin)):]))))
+		for i in result:
+			self.draw.rectangle(((i[0],i[1]),(i[0]+10,i[1]-10)),fill = (i[2],i[3],i[4]))
+		self.percent = 100
+		
+		self.pb.print_progress_bar(self.percent)
+		
 		
 		
 		#list(map(self._drawcycle,list(product(self.p_lin, self.q_lin))))
@@ -449,44 +501,44 @@ class mandelRender():
 	    return gaussian(x,mu,sigma)
 	 
 	
+@jit
+def drawcycle(x,nitr,axx,ayy,frin,xcent,ycent,gamma):
+	p=x[0]
+	q=x[1]
+	c1=(p+axx/ayy*frin-xcent)*(axx/2.*ayy/axx/frin)
+	c2=(q+frin-ycent)*(ayy/2./frin)
+	axey=cycle(p,q,nitr)
+	rectangle=(0,0, 0, 0, 0)
+	if (axey[1]>=10.):
+		'''while (dim[n]<itr):
+			n=n+1'''
+		it=(axey[0]+8.5*exp(-sqrt(axey[1]))+8.5*exp(-((axey[1])**0.09)))/nitr
+		#it = 0.01*(axey[0] - np.log2(np.log2(axey[1])))
+		if gamma=="exper":
+			color = (1.0 - 0.01*(axey[0] - np.log2(np.log2(axey[1]))))
+			rectangle=(c1,ayy-c2, int(color*255),int(color*255),int(color*255))
+		if gamma=="sunset":
+			rectangle=(c1,ayy-c2,int((7*gaussian(it,0.76,0.035)+24*gaussian(it,0.3,0.09)+2*gaussian(it,0.915,0.015))*255./40.),int((12*gaussian(it,0.3,0.12)+5*gaussian(it,0.77,0.05)+2*gaussian(it,0.92,0.02))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.))
+		if gamma=="acid":
+			#self.draw.rectangle(((c1,c2),(c1+10,c2+10)), fill=(int((gaussian(it,0.8,0.05)+24*gaussian(it,0.3,0.09))*255./40.),int((12*gaussian(it,0.3,0.12))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.)))
+			rectangle=(c1,ayy-c2, int((7*gaussian(it,0.5,0.12)+2*gaussian(it,0.8,0.05))*255./40.),int((12*gaussian(it,0.3,0.12))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.))
+		if gamma=="azure":
+			rectangle=(c1,ayy-c2, int((2*gaussian(it,0.8,0.05))*255./40.),int((12*gaussian(it,0.3,0.12))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.))
+		if gamma=="bloody grass":
+			#green red: 
+			rectangle=(c1,ayy-c2, int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.),int((12*gaussian(it,0.3,0.12))*255./40.),int((2*gaussian(it,0.7,0.05))*255./40.))
+		if gamma=="bw":
+			#bw: 
+			#self.draw.rectangle(((c1,c2),(c1+10,c2+10)), fill=(int(it*255*(1+10*exp(-it))),int(it*255*(1+10*exp(-it))),int(it*255*(1+10*exp(-it)))))
+		#bw rec: 
+			rectangle=(c1,ayy-c2, int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.))
+	if (axey[0]>nitr-2):
+		rectangle=(c1,ayy-c2, 0, 0, 0)
 	
-	def _drawcycle(self,x):
-		p=x[0]
-		q=x[1]
-		c1=(p+self.axx/self.ayy*self.frin-self.xcent)*(self.axx/2.*self.ayy/self.axx/self.frin)
-		c2=(q+self.frin-self.ycent)*(self.ayy/2./self.frin)
-		axey=self._cycle(p,q)
-		if (axey[1]>=10.):
-			'''while (dim[n]<itr):
-				n=n+1'''
-			it=(axey[0]+8.5*exp(-sqrt(axey[1]))+8.5*exp(-((axey[1])**0.09)))/self.nitr
-			#it = 0.01*(axey[0] - np.log2(np.log2(axey[1])))
-			if self.gamma=="exper":
-				color = (1.0 - 0.01*(axey[0] - np.log2(np.log2(axey[1]))))
-				self.draw.rectangle(((c1,self.ayy-c2),(c1+10,self.ayy-c2-10)), fill=(int(color*255),int(color*255),int(color*255)))
-			if self.gamma=="sunset":
-				self.draw.rectangle(((c1,self.ayy-c2),(c1+10,self.ayy-c2-10)), fill=(int((7*self._gaussian(it,0.76,0.035)+24*self._gaussian(it,0.3,0.09)+2*self._gaussian(it,0.915,0.015))*255./40.),int((12*self._gaussian(it,0.3,0.12)+5*self._gaussian(it,0.77,0.05)+2*self._gaussian(it,0.92,0.02))*255./40.),int((2*self._gaussian(it,0.93,0.02)+12*self._gaussian(it,0.4,0.12)+5*self._gaussian(it,0.8,0.05)+self._gaussian(it,1,0.01))*255./40.)))
-			if self.gamma=="acid":
-				#self.draw.rectangle(((c1,c2),(c1+10,c2+10)), fill=(int((gaussian(it,0.8,0.05)+24*gaussian(it,0.3,0.09))*255./40.),int((12*gaussian(it,0.3,0.12))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.)))
-				self.draw.rectangle(((c1,self.ayy-c2),(c1+10,self.ayy-c2-10)), fill=(int((7*gaussian(it,0.5,0.12)+2*gaussian(it,0.8,0.05))*255./40.),int((12*gaussian(it,0.3,0.12))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.)))
-			if self.gamma=="azure":
-				self.draw.rectangle(((c1,self.ayy-c2),(c1+10,self.ayy-c2-10)), fill=(int((2*gaussian(it,0.8,0.05))*255./40.),int((12*gaussian(it,0.3,0.12))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.)))
-			if self.gamma=="bloody grass":
-				#green red: 
-				self.draw.rectangle(((c1,self.ayy-c2),(c1+10,self.ayy-c2-10)), fill=(int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.),int((12*gaussian(it,0.3,0.12))*255./40.),int((2*gaussian(it,0.7,0.05))*255./40.)))
-			if self.gamma=="bw":
-				#bw: 
-				#self.draw.rectangle(((c1,c2),(c1+10,c2+10)), fill=(int(it*255*(1+10*exp(-it))),int(it*255*(1+10*exp(-it))),int(it*255*(1+10*exp(-it)))))
-			#bw rec: 
-				self.draw.rectangle(((c1,self.ayy-c2),(c1+10,self.ayy-c2-10)), fill=(int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.),int((2*gaussian(it,0.93,0.02)+12*gaussian(it,0.4,0.12)+5*gaussian(it,0.8,0.05)+gaussian(it,1,0.01))*255./40.)))
-		if (axey[0]>self.nitr-2):
-			self.draw.rectangle(((c1,self.ayy-c2),(c1+10,self.ayy-c2-10)), fill=(0, 0, 0))
-		if (int(c1/(self.axx-1)*100)%5==0) and int(c1/(self.axx-1)*100)!=self.percent:
-			self.percent = int(c1/(self.axx-1)*100)
-			
+	
+	return rectangle		
 			#print(int(c1/self.axx*100))
-			self.pb = ProgressBar(total=100,prefix='Frame: '+str(self.frameNo+1)+'/'+str(self.numOfFrames), suffix='', decimals=3, length=50, fill='X', zfill='-')
-			self.pb.print_progress_bar(self.percent)
+			
 			
 
 		
