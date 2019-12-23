@@ -472,7 +472,78 @@ class mandelRender():
 			self.image = Image.new('RGBA', (self.axx, self.ayy), (255,0,0))  
 			self.draw = ImageDraw.Draw(self.image) 
 			
-			list(map(self._drawcycle,list(product(self.p_lin, self.q_lin))))
+			self.pb = ProgressBar(total=100,prefix='Frames: '+str(self.frameNo)+'/'+str(self.numOfFrames), suffix='', decimals=3, length=50, fill='X', zfill='-')
+			self.percent=0
+			
+			
+			copier = functools.partial(drawcycle, nitr = self.nitr,axx=self.axx,ayy=self.ayy,frin=self.frin,xcent=self.xcent,ycent=self.ycent,gamma=self.gamma)
+			self.pb.print_progress_bar(self.percent)
+			
+			result = list(map(copier,list(product(self.p_lin[:int(1/3*len(self.p_lin))], self.q_lin[:int(1/3*len(self.p_lin))]))))
+			for i in result:
+				self.draw.rectangle(((i[0],i[1]),(i[0]+1,i[1]-1)),fill = (i[2],i[3],i[4]))
+			self.percent = 11
+			
+			self.pb.print_progress_bar(self.percent)
+			result = list(map(copier,list(product(self.p_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))], self.q_lin[:int(1/3*len(self.p_lin))]))))
+			for i in result:
+				self.draw.rectangle(((i[0],i[1]),(i[0]+1,i[1]-1)),fill = (i[2],i[3],i[4]))
+			self.percent = 22
+			
+			self.pb.print_progress_bar(self.percent)
+			result = list(map(copier,list(product(self.p_lin[int(2/3*len(self.p_lin)):], self.q_lin[:int(1/3*len(self.p_lin))]))))
+			for i in result:
+				self.draw.rectangle(((i[0],i[1]),(i[0]+1,i[1]-1)),fill = (i[2],i[3],i[4]))
+			self.percent = 33
+			
+			self.pb.print_progress_bar(self.percent)
+			
+			
+			result = list(map(copier,list(product(self.p_lin[:int(1/3*len(self.p_lin))], self.q_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))]))))
+			for i in result:
+				self.draw.rectangle(((i[0],i[1]),(i[0]+1,i[1]-1)),fill = (i[2],i[3],i[4]))
+			self.percent = 44
+			
+			self.pb.print_progress_bar(self.percent)
+			
+			result = list(map(copier,list(product(self.p_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))], self.q_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))]))))
+			for i in result:
+				self.draw.rectangle(((i[0],i[1]),(i[0]+1,i[1]-1)),fill = (i[2],i[3],i[4]))
+			self.percent = 55
+			
+			self.pb.print_progress_bar(self.percent)
+			
+			result = list(map(copier,list(product(self.p_lin[int(2/3*len(self.p_lin)):], self.q_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))]))))
+			for i in result:
+				self.draw.rectangle(((i[0],i[1]),(i[0]+1,i[1]-1)),fill = (i[2],i[3],i[4]))
+			
+			self.percent = 66
+			
+			self.pb.print_progress_bar(self.percent)
+			
+			result = list(map(copier,list(product(self.p_lin[:int(1/3*len(self.p_lin))], self.q_lin[int(2/3*len(self.p_lin)):]))))		
+			for i in result:
+				self.draw.rectangle(((i[0],i[1]),(i[0]+1,i[1]-1)),fill = (i[2],i[3],i[4]))
+			self.percent = 77
+			
+			self.pb.print_progress_bar(self.percent)
+			
+			
+			result = list(map(copier,list(product(self.p_lin[int(1/3*len(self.p_lin)):int(2/3*len(self.p_lin))], self.q_lin[int(2/3*len(self.p_lin)):]))))		
+			for i in result:
+				self.draw.rectangle(((i[0],i[1]),(i[0]+1,i[1]-1)),fill = (i[2],i[3],i[4]))
+			self.percent = 88
+			
+			self.pb.print_progress_bar(self.percent)
+			
+			
+			result = list(map(copier,list(product(self.p_lin[int(2/3*len(self.p_lin)):], self.q_lin[int(2/3*len(self.p_lin)):]))))
+			for i in result:
+				self.draw.rectangle(((i[0],i[1]),(i[0]+1,i[1]-1)),fill = (i[2],i[3],i[4]))
+			self.percent = 100
+			
+			self.pb.print_progress_bar(self.percent)
+		
 			self.percent=0
 			
 			if self.frameNo==0:
