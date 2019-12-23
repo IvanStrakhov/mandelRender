@@ -13,7 +13,7 @@ from numpy.testing import assert_allclose, assert_array_equal
 import mandel
 
 
-class gaussianTestCase(unittest.TestCase):
+class mandelTestCase(unittest.TestCase):
     
     def test_60(self):
         x = math.radians(60.0001)
@@ -32,6 +32,11 @@ class gaussianTestCase(unittest.TestCase):
         e=b[0]/np.max(b[0])
         d=d/np.max(d)
         assert_allclose(e, d, atol=0.05)
+        
+    def test_cycle(self):
+        result=mandel.cycle(0,0,20000000)
+        self.assertEqual(result[0],20000000)
+        self.assertLessEqual(result[1],4)
 
         
         

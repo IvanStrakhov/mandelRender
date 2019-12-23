@@ -498,12 +498,6 @@ class mandelRender():
 		
 		
 
-	def _cycle(self,p,q):
-		return cycle(p,q, self.nitr)
-		
-
-	def _gaussian(self,x, mu, sigma):
-	    return gaussian(x,mu,sigma)
 	 
 	
 @jit
